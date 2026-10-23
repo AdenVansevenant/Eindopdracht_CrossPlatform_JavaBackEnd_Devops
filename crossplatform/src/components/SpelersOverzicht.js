@@ -1,4 +1,5 @@
 import { Text, View } from 'react-native';
+import FantasySpeler from './FantasySpeler';
 
 const SpelersOverzicht = () => {
   const titel = 'Mijn WK Fantasy Team';
@@ -22,20 +23,14 @@ const SpelersOverzicht = () => {
     { id: 15, naam: 'Bankspeler 4', positie: 'Aanvaller', prijs: 5 },
   ];
 
-  const toonSpeler = (speler) => (
-    <View key={speler.id}>
-      <Text>{speler.naam}</Text>
-      <Text>Positie: {speler.positie}</Text>
-      <Text>Prijs: €{speler.prijs} miljoen</Text>
-    </View>
-  );
-
   const toonSpelers = (spelers) => {
     if (spelers.length === 0) {
       return <Text>Er zijn nog geen spelers geselecteerd.</Text>;
     }
 
-    return spelers.map((speler) => toonSpeler(speler));
+    return spelers.map((speler) => (
+      <FantasySpeler key={speler.id} speler={speler} />
+    ));
   };
 
   const toonSamenvatting = () => {
