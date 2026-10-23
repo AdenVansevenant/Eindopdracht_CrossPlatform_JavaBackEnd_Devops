@@ -1,21 +1,23 @@
-import { Text, View } from 'react-native';
+import { FlatList, Text, View } from 'react-native';
 import FantasySpeler from './FantasySpeler';
 
 const BeschikbareSpelers = ({ spelers }) => {
-  const toonBeschikbareSpelers = () => {
-    if (spelers.length === 0) {
-      return <Text>Er zijn geen beschikbare spelers.</Text>;
-    }
-
-    return spelers.map((speler) => (
-      <FantasySpeler key={speler.id} speler={speler} label="Beschikbaar" />
-    ));
-  };
+  const renderSpeler = ({ item }) => (
+    <FantasySpeler speler={item} label="Beschikbaar" />
+  );
 
   return (
     <View>
       <Text>Beschikbare spelers</Text>
-      {toonBeschikbareSpelers()}
+      {spelers.length === 0 ? (
+        <Text>Er zijn geen beschikbare spelers.</Text>
+      ) : (
+        <FlatList
+          data={spelers}
+          renderItem={renderSpeler}
+          keyExtractor={(speler) => speler.id.toString()}
+        />
+      )}
     </View>
   );
 };
