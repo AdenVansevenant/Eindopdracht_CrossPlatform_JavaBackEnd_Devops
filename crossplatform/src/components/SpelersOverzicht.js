@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import FantasySpeler from './FantasySpeler';
 
 const SpelersOverzicht = () => {
@@ -35,6 +35,8 @@ const SpelersOverzicht = () => {
 
   const toonSamenvatting = () => {
     const totaal = basisspelers.length + bankzitters.length;
+    const openBasisplaatsen = 11 - basisspelers.length;
+    const openBankplaatsen = 4 - bankzitters.length;
     const resterendBudget = 100 - [...basisspelers, ...bankzitters].reduce(
       (totaalPrijs, speler) => totaalPrijs + speler.prijs,
       0,
@@ -45,15 +47,44 @@ const SpelersOverzicht = () => {
         <Text>Basisspelers: {basisspelers.length} van 11</Text>
         <Text>Bankzitters: {bankzitters.length} van 4</Text>
         <Text>Geselecteerd: {totaal} spelers</Text>
+        <Text>Open basisplaatsen: {openBasisplaatsen}</Text>
+        <Text>Open plaatsen op de bank: {openBankplaatsen}</Text>
         <Text>Resterend budget: €{resterendBudget} miljoen</Text>
       </View>
     );
   };
 
+  const toonTeamStatus = () => {
+    const teamCompleet =
+      basisspelers.length === 11 && bankzitters.length === 4;
+    const budgetBeschikbaar =
+      100 - [...basisspelers, ...bankzitters].reduce(
+        (totaalPrijs, speler) => totaalPrijs + speler.prijs,
+        0,
+      );
+
+    if (teamCompleet && budgetBeschikbaar >= 0) {
+      return <Text>Je team is volledig en past binnen het budget.</Text>;
+    }
+
+    if (budgetBeschikbaar < 0) {
+      return <Text>Het team gaat over het beschikbare budget.</Text>;
+    }
+
+    return <Text>Je team is nog niet volledig samengesteld.</Text>;
+  };
+
   return (
     <View>
       <Text>{titel}</Text>
+      <Text>Stel jouw WK Fantasy League-team samen.</Text>
+      <Text>Zoek een speler</Text>
+      <TextInput
+        placeholder="Typ een spelersnaam"
+        accessibilityLabel="Zoek een speler"
+      />
       {toonSamenvatting()}
+      {toonTeamStatus()}
       <Text>Basisspelers</Text>
       {toonSpelers(basisspelers)}
       <Text>Bankzitters</Text>
