@@ -7,9 +7,11 @@ const SpelersOverzicht = () => {
   return (
     <View>
       <Text>{titel}</Text>
-      {spelers.map((speler) => (
-        <Text key={speler}>{speler}</Text>
-      ))}
+      {spelers.length > 0 ? (
+        spelers.map((speler) => <Text key={speler}>{speler}</Text>)
+      ) : (
+        <Text>Geen spelers gevonden.</Text>
+      )}
     </View>
   );
 };
