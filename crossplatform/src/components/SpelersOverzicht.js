@@ -23,9 +23,22 @@ const SpelersOverzicht = () => {
     return spelers.map((speler) => toonSpeler(speler));
   };
 
+  const toonSamenvatting = () => {
+    if (spelers.length === 0) {
+      return <Text>Er zijn nog geen spelers toegevoegd aan het team.</Text>;
+    }
+
+    const aantalSpelers = spelers.length;
+    const spelerWoord = aantalSpelers === 1 ? 'speler' : 'spelers';
+
+    return <Text>Er staan {aantalSpelers} {spelerWoord} in het overzicht.</Text>;
+  };
+
   return (
     <View>
       <Text>{titel}</Text>
+      <Text>Bekijk de spelers en hun positie in het team.</Text>
+      {toonSamenvatting()}
       {toonSpelers()}
     </View>
   );
