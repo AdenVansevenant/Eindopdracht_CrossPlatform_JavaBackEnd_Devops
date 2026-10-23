@@ -1,4 +1,4 @@
-import { FlatList, Text, View } from 'react-native';
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import FantasySpeler from './FantasySpeler';
 
 const FantasyTeam = ({ basisspelers, bankzitters }) => {
@@ -21,13 +21,26 @@ const FantasyTeam = ({ basisspelers, bankzitters }) => {
   };
 
   return (
-    <View>
-      <Text>Basisspelers</Text>
+    <View style={styles.sectie}>
+      <Text style={styles.kop}>Basisspelers</Text>
       {toonSpelers(basisspelers, 'Basis')}
-      <Text>Bankzitters</Text>
+      <Text style={styles.kop}>Bankzitters</Text>
       {toonSpelers(bankzitters, 'Bank')}
     </View>
   );
 };
 
 export default FantasyTeam;
+
+const styles = StyleSheet.create({
+  sectie: {
+    marginTop: 20,
+  },
+  kop: {
+    color: '#152536',
+    fontSize: 20,
+    fontWeight: '700',
+    marginBottom: 10,
+    marginTop: 12,
+  },
+});

@@ -1,4 +1,4 @@
-import { Text, TextInput, View } from 'react-native';
+import { StyleSheet, Text, TextInput, View } from 'react-native';
 import BeschikbareSpelers from './BeschikbareSpelers';
 import FantasyTeam from './FantasyTeam';
 
@@ -46,15 +46,18 @@ const SpelersOverzicht = () => {
     const resterendBudget = 100 - totaalBudgetGebruikt;
 
     return (
-      <View>
-        <Text>Basisspelers: {basisspelers.length} van 11</Text>
-        <Text>Bankzitters: {bankzitters.length} van 4</Text>
-        <Text>Geselecteerd: {totaal} spelers</Text>
-        <Text>Open basisplaatsen: {openBasisplaatsen}</Text>
-        <Text>Open plaatsen op de bank: {openBankplaatsen}</Text>
-        <Text>Gebruikt budget: €{totaalBudgetGebruikt} miljoen</Text>
-        <Text>Resterend budget: €{resterendBudget} miljoen</Text>
-        <Text>Totaal fantasy-punten: {totaalFantasyPunten}</Text>
+      <View style={styles.samenvatting}>
+        <Text style={styles.samenvattingKop}>Jouw team in cijfers</Text>
+        <View style={styles.statistiekenRij}>
+          <Text style={styles.statistiek}>Basis {basisspelers.length}/11</Text>
+          <Text style={styles.statistiek}>Bank {bankzitters.length}/4</Text>
+          <Text style={styles.statistiek}>{totaal} spelers</Text>
+        </View>
+        <Text style={styles.samenvattingTekst}>Open basisplaatsen: {openBasisplaatsen}</Text>
+        <Text style={styles.samenvattingTekst}>Open plaatsen op de bank: {openBankplaatsen}</Text>
+        <Text style={styles.samenvattingTekst}>Gebruikt budget: €{totaalBudgetGebruikt} miljoen</Text>
+        <Text style={styles.budget}>Resterend budget: €{resterendBudget} miljoen</Text>
+        <Text style={styles.punten}>Totaal fantasy-punten: {totaalFantasyPunten}</Text>
       </View>
     );
   };
@@ -65,22 +68,23 @@ const SpelersOverzicht = () => {
     const budgetBeschikbaar = 100 - totaalBudgetGebruikt;
 
     if (teamCompleet && budgetBeschikbaar >= 0) {
-      return <Text>Je team is volledig en past binnen het budget.</Text>;
+      return <Text style={styles.geslaagd}>Je team is volledig en past binnen het budget.</Text>;
     }
 
     if (budgetBeschikbaar < 0) {
-      return <Text>Het team gaat over het beschikbare budget.</Text>;
+      return <Text style={styles.fout}>Het team gaat over het beschikbare budget.</Text>;
     }
 
-    return <Text>Je team is nog niet volledig samengesteld.</Text>;
+    return <Text style={styles.melding}>Je team is nog niet volledig samengesteld.</Text>;
   };
 
   return (
-    <View>
-      <Text>{titel}</Text>
-      <Text>Stel jouw WK Fantasy League-team samen.</Text>
-      <Text>Zoek een speler</Text>
+    <View style={styles.container}>
+      <Text style={styles.titel}>{titel}</Text>
+      <Text style={styles.intro}>Stel jouw WK Fantasy League-team samen.</Text>
+      <Text style={styles.zoekLabel}>Zoek een speler</Text>
       <TextInput
+        style={styles.zoekveld}
         placeholder="Typ een spelersnaam"
         accessibilityLabel="Zoek een speler"
       />
@@ -93,3 +97,99 @@ const SpelersOverzicht = () => {
 };
 
 export default SpelersOverzicht;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: '#F3F6F8',
+    flex: 1,
+    padding: 18,
+  },
+  titel: {
+    color: '#152536',
+    fontSize: 28,
+    fontWeight: '800',
+    marginBottom: 6,
+  },
+  intro: {
+    color: '#526477',
+    fontSize: 15,
+    marginBottom: 20,
+  },
+  zoekLabel: {
+    color: '#24465D',
+    fontSize: 14,
+    fontWeight: '700',
+    marginBottom: 6,
+  },
+  zoekveld: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#C8D4DD',
+    borderRadius: 10,
+    borderWidth: 1,
+    fontSize: 16,
+    marginBottom: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+  },
+  samenvatting: {
+    backgroundColor: '#FFFFFF',
+    borderColor: '#D8E1E8',
+    borderRadius: 14,
+    borderWidth: 1,
+    padding: 14,
+  },
+  samenvattingKop: {
+    color: '#152536',
+    fontSize: 18,
+    fontWeight: '700',
+    marginBottom: 10,
+  },
+  statistiekenRij: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    marginBottom: 8,
+  },
+  statistiek: {
+    color: '#24465D',
+    fontSize: 14,
+    fontWeight: '700',
+    marginBottom: 6,
+  },
+  samenvattingTekst: {
+    color: '#526477',
+    fontSize: 14,
+    marginTop: 4,
+  },
+  budget: {
+    color: '#087E68',
+    fontSize: 16,
+    fontWeight: '700',
+    marginTop: 8,
+  },
+  punten: {
+    color: '#24465D',
+    fontSize: 15,
+    fontWeight: '700',
+    marginTop: 6,
+  },
+  geslaagd: {
+    backgroundColor: '#E2F4EE',
+    borderRadius: 8,
+    color: '#12664F',
+    marginTop: 12,
+    padding: 10,
+  },
+  fout: {
+    backgroundColor: '#FCE8E6',
+    borderRadius: 8,
+    color: '#9D2A20',
+    marginTop: 12,
+    padding: 10,
+  },
+  melding: {
+    color: '#526477',
+    fontSize: 14,
+    marginTop: 12,
+  },
+});
