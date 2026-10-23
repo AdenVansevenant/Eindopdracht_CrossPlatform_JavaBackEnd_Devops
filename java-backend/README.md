@@ -4,9 +4,9 @@ Deze map is de aparte Spring Boot-backend voor de Cross-Platform-app in `../cros
 
 ## Huidige start
 
-Er staat nu een Spring Boot 4-projectskelet met Java 25, Maven, een health-endpoint en een eerste controller-test. De eerste lesstap met JPA en H2 is toegevoegd: `Speler` wordt opgeslagen in een tijdelijke H2-databank en `GET /api/spelers` geeft spelers terug via een response-DTO. Er zijn nog geen spelers ingevoerd, dus de lijst is voorlopig leeg. Er is nog geen CRUD of teamfunctionaliteit.
+De huidige stap volgt les 4: Spring Boot 4-project, Java 25, Maven, JPA/H2, H2 Console, DevTools, Actuator en een eerste REST-endpoint. De demo is vertaald naar de WK Fantasy-mock-ups: `Speler` wordt opgeslagen in H2 en `GET /api/spelers` geeft de zes voorbeeldspelers terug via een response-DTO. De database is tijdelijk en wordt bij herstart opnieuw opgebouwd. Dit is nog geen volledige CRUD of teamfunctionaliteit.
 
-Vereist: JDK 25 en Maven 3.9+. Start vanuit deze map met `mvn spring-boot:run` en open `http://localhost:8080/api/health` of `http://localhost:8080/api/spelers`. Voer de tests uit met `mvn test`. De H2-database is in-memory en wordt bij herstart leeggemaakt; later configureren we aparte dev- en prod-databases.
+Vereist: JDK 25 en Maven 3.9+. Start vanuit deze map met `mvn spring-boot:run` en open `http://localhost:8080/api/health` of `http://localhost:8080/api/spelers`. H2 Console: `http://localhost:8080/h2-console`, JDBC URL `jdbc:h2:mem:wkfantasy`, username `sa`, leeg wachtwoord. Voer de tests uit met `mvn test`. De H2-database is in-memory en wordt bij herstart opnieuw opgebouwd; later configureren we aparte dev- en prod-databases.
 
 ## Examenopdracht: afvinklijst
 
