@@ -2,7 +2,7 @@ import { Text, View } from 'react-native';
 
 const SpelersOverzicht = () => {
   const titel = 'Spelersoverzicht';
-  const spelers = ['Speler 1', 'Speler 2', 'Speler 3'];
+  const spelers = [];
 
   return (
     <View>
