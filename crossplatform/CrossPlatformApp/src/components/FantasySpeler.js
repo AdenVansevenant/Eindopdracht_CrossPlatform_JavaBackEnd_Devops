@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
+import theme from '../theme/theme';
 
 const FantasySpeler = ({ speler, label }) => {
   return (
@@ -18,8 +19,8 @@ export default FantasySpeler;
 
 const styles = StyleSheet.create({
   kaart: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#D8E1E8',
+    backgroundColor: theme.CARD_COLOR,
+    borderColor: theme.BORDER_COLOR,
     borderRadius: 12,
     borderWidth: 1,
     marginBottom: 10,
@@ -32,29 +33,29 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   label: {
-    color: '#526477',
+    color: theme.MUTED_COLOR,
     fontSize: 12,
     fontWeight: '600',
     textTransform: 'uppercase',
   },
   punten: {
-    color: '#087E68',
+    color: theme.SUCCESS_COLOR,
     fontSize: 13,
     fontWeight: '700',
   },
   naam: {
-    color: '#152536',
+    color: theme.PRIMARY_COLOR,
     fontSize: 17,
     fontWeight: '700',
     marginBottom: 4,
   },
   land: {
-    color: '#526477',
+    color: theme.MUTED_COLOR,
     fontSize: 14,
     marginBottom: 8,
   },
   prijs: {
-    color: '#152536',
+    color: theme.PRIMARY_COLOR,
     fontSize: 14,
     fontWeight: '600',
   },

@@ -1,6 +1,7 @@
 import { StyleSheet, Text, TextInput, View } from 'react-native';
 import BeschikbareSpelers from './BeschikbareSpelers';
 import FantasyTeam from './FantasyTeam';
+import theme from '../theme/theme';
 
 const SpelersOverzicht = () => {
   const titel = 'Mijn WK Fantasy Team';
@@ -44,6 +45,9 @@ const SpelersOverzicht = () => {
     const openBasisplaatsen = 11 - basisspelers.length;
     const openBankplaatsen = 4 - bankzitters.length;
     const resterendBudget = 100 - totaalBudgetGebruikt;
+    const budgetKleur = resterendBudget >= 0
+      ? theme.SUCCESS_COLOR
+      : theme.ERROR_COLOR;
 
     return (
       <View style={styles.samenvatting}>
@@ -56,7 +60,7 @@ const SpelersOverzicht = () => {
         <Text style={styles.samenvattingTekst}>Open basisplaatsen: {openBasisplaatsen}</Text>
         <Text style={styles.samenvattingTekst}>Open plaatsen op de bank: {openBankplaatsen}</Text>
         <Text style={styles.samenvattingTekst}>Gebruikt budget: €{totaalBudgetGebruikt} miljoen</Text>
-        <Text style={styles.budget}>Resterend budget: €{resterendBudget} miljoen</Text>
+        <Text style={[styles.budget, { color: budgetKleur }]}>Resterend budget: €{resterendBudget} miljoen</Text>
         <Text style={styles.punten}>Totaal fantasy-punten: {totaalFantasyPunten}</Text>
       </View>
     );
@@ -100,30 +104,30 @@ export default SpelersOverzicht;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F3F6F8',
+    backgroundColor: theme.BACKGROUND_COLOR,
     flex: 1,
     padding: 18,
   },
   titel: {
-    color: '#152536',
-    fontSize: 28,
+    color: theme.PRIMARY_COLOR,
+    fontSize: theme.FONT_SIZE_TITLE,
     fontWeight: '800',
     marginBottom: 6,
   },
   intro: {
-    color: '#526477',
-    fontSize: 15,
+    color: theme.MUTED_COLOR,
+    fontSize: theme.FONT_SIZE_BODY,
     marginBottom: 20,
   },
   zoekLabel: {
-    color: '#24465D',
+    color: theme.SECONDARY_COLOR,
     fontSize: 14,
     fontWeight: '700',
     marginBottom: 6,
   },
   zoekveld: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#C8D4DD',
+    backgroundColor: theme.CARD_COLOR,
+    borderColor: theme.BORDER_COLOR,
     borderRadius: 10,
     borderWidth: 1,
     fontSize: 16,
@@ -132,14 +136,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   samenvatting: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#D8E1E8',
+    backgroundColor: theme.CARD_COLOR,
+    borderColor: theme.BORDER_COLOR,
     borderRadius: 14,
     borderWidth: 1,
     padding: 14,
   },
   samenvattingKop: {
-    color: '#152536',
+    color: theme.PRIMARY_COLOR,
     fontSize: 18,
     fontWeight: '700',
     marginBottom: 10,
@@ -151,24 +155,24 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   statistiek: {
-    color: '#24465D',
+    color: theme.SECONDARY_COLOR,
     fontSize: 14,
     fontWeight: '700',
     marginBottom: 6,
   },
   samenvattingTekst: {
-    color: '#526477',
+    color: theme.MUTED_COLOR,
     fontSize: 14,
     marginTop: 4,
   },
   budget: {
-    color: '#087E68',
+    color: theme.SUCCESS_COLOR,
     fontSize: 16,
     fontWeight: '700',
     marginTop: 8,
   },
   punten: {
-    color: '#24465D',
+    color: theme.SECONDARY_COLOR,
     fontSize: 15,
     fontWeight: '700',
     marginTop: 6,
@@ -176,19 +180,19 @@ const styles = StyleSheet.create({
   geslaagd: {
     backgroundColor: '#E2F4EE',
     borderRadius: 8,
-    color: '#12664F',
+    color: theme.SUCCESS_COLOR,
     marginTop: 12,
     padding: 10,
   },
   fout: {
     backgroundColor: '#FCE8E6',
     borderRadius: 8,
-    color: '#9D2A20',
+    color: theme.ERROR_COLOR,
     marginTop: 12,
     padding: 10,
   },
   melding: {
-    color: '#526477',
+    color: theme.MUTED_COLOR,
     fontSize: 14,
     marginTop: 12,
   },

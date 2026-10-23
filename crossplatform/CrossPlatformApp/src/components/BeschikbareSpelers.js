@@ -1,5 +1,6 @@
 import { SectionList, StyleSheet, Text, View } from 'react-native';
 import FantasySpeler from './FantasySpeler';
+import theme from '../theme/theme';
 
 const BeschikbareSpelers = ({ spelers }) => {
   const renderSpeler = ({ item }) => (
@@ -40,14 +41,14 @@ const styles = StyleSheet.create({
     marginTop: 24,
   },
   kop: {
-    color: '#152536',
+    color: theme.PRIMARY_COLOR,
     fontSize: 22,
     fontWeight: '700',
     marginBottom: 12,
   },
   sectieKop: {
     backgroundColor: '#EAF1F4',
-    color: '#24465D',
+    color: theme.SECONDARY_COLOR,
     fontSize: 15,
     fontWeight: '700',
     marginBottom: 10,

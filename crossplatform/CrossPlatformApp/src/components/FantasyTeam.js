@@ -1,5 +1,6 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import FantasySpeler from './FantasySpeler';
+import theme from '../theme/theme';
 
 const FantasyTeam = ({ basisspelers, bankzitters }) => {
   const renderSpeler = (label) => ({ item }) => (
@@ -37,8 +38,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   kop: {
-    color: '#152536',
-    fontSize: 20,
+    color: theme.PRIMARY_COLOR,
+    fontSize: theme.FONT_SIZE_HEADING,
     fontWeight: '700',
     marginBottom: 10,
     marginTop: 12,
