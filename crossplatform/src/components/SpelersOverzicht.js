@@ -2,11 +2,6 @@ import { Text, View } from 'react-native';
 
 const SpelersOverzicht = () => {
   const titel = 'Spelersoverzicht';
-  const ploegverantwoordelijke = {
-    naam: 'Coach Aden',
-    rol: 'Ploegverantwoordelijke',
-  };
-
   const spelers = [
     { id: 1, naam: 'Speler 1', positie: 'Keeper' },
     { id: 2, naam: 'Speler 2', positie: 'Verdediger' },
@@ -39,13 +34,6 @@ const SpelersOverzicht = () => {
     return <Text>Er staan {aantalSpelers} {spelerWoord} in het overzicht.</Text>;
   };
 
-  const toonCoach = () => (
-    <View>
-      <Text>{ploegverantwoordelijke.rol}</Text>
-      <Text>{ploegverantwoordelijke.naam}</Text>
-    </View>
-  );
-
   const toonSpelersPerPositie = () => {
     const posities = ['Keeper', 'Verdediger', 'Middenvelder', 'Aanvaller'];
 
@@ -73,7 +61,6 @@ const SpelersOverzicht = () => {
     <View>
       <Text>{titel}</Text>
       <Text>Bekijk de spelers en hun positie in het team.</Text>
-      {toonCoach()}
       {toonSamenvatting()}
       {toonSpelers()}
       {toonSpelersPerPositie()}
