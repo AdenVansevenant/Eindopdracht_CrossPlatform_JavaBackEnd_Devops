@@ -4,9 +4,9 @@ Deze map is de aparte Spring Boot-backend voor de Cross-Platform-app in `../cros
 
 ## Huidige start
 
-Er staat nu een minimaal Spring Boot 4-projectskelet met Java 25, Maven, een health-endpoint en een eerste controller-test. Dit is alleen de technische start: er is nog geen speler-, team- of gebruikersfunctionaliteit en er is nog geen databank gekoppeld.
+Er staat nu een Spring Boot 4-projectskelet met Java 25, Maven, een health-endpoint en een eerste controller-test. De eerste lesstap met JPA en H2 is toegevoegd: `Speler` wordt opgeslagen in een tijdelijke H2-databank en `GET /api/spelers` geeft spelers terug via een response-DTO. Er zijn nog geen spelers ingevoerd, dus de lijst is voorlopig leeg. Er is nog geen CRUD of teamfunctionaliteit.
 
-Vereist: JDK 25 en Maven 3.9+. Start vanuit deze map met `mvn spring-boot:run` en open `http://localhost:8080/api/health`. Voer de test uit met `mvn test`. De cursusrepository kon tijdens deze stap niet worden opgehaald; de code is daarom beperkt tot een gangbare Spring Boot-opstart en nog niet afgestemd op specifieke les 4/5-voorbeelden.
+Vereist: JDK 25 en Maven 3.9+. Start vanuit deze map met `mvn spring-boot:run` en open `http://localhost:8080/api/health` of `http://localhost:8080/api/spelers`. Voer de tests uit met `mvn test`. De H2-database is in-memory en wordt bij herstart leeggemaakt; later configureren we aparte dev- en prod-databases.
 
 ## Examenopdracht: afvinklijst
 
