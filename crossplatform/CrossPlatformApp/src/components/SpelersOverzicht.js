@@ -1,5 +1,6 @@
 import { Text, TextInput, View } from 'react-native';
-import FantasySpeler from './FantasySpeler';
+import BeschikbareSpelers from './BeschikbareSpelers';
+import FantasyTeam from './FantasyTeam';
 
 const SpelersOverzicht = () => {
   const titel = 'Mijn WK Fantasy Team';
@@ -22,25 +23,27 @@ const SpelersOverzicht = () => {
     { id: 14, naam: 'Bankspeler 3', positie: 'Middenvelder', prijs: 5, punten: 6 },
     { id: 15, naam: 'Bankspeler 4', positie: 'Aanvaller', prijs: 5, punten: 7 },
   ];
-
-  const toonSpelers = (spelers) => {
-    if (spelers.length === 0) {
-      return <Text>Er zijn nog geen spelers geselecteerd.</Text>;
-    }
-
-    return spelers.map((speler) => (
-      <FantasySpeler key={speler.id} speler={speler} />
-    ));
-  };
+  const beschikbareSpelers = [
+    { id: 16, naam: 'Beschikbare speler 1', positie: 'Doelman', prijs: 5, punten: 6 },
+    { id: 17, naam: 'Beschikbare speler 2', positie: 'Verdediger', prijs: 6, punten: 8 },
+    { id: 18, naam: 'Beschikbare speler 3', positie: 'Middenvelder', prijs: 7, punten: 10 },
+    { id: 19, naam: 'Beschikbare speler 4', positie: 'Aanvaller', prijs: 8, punten: 12 },
+  ];
+  const alleGeselecteerdeSpelers = [...basisspelers, ...bankzitters];
+  const totaalBudgetGebruikt = alleGeselecteerdeSpelers.reduce(
+    (totaalPrijs, speler) => totaalPrijs + speler.prijs,
+    0,
+  );
+  const totaalFantasyPunten = alleGeselecteerdeSpelers.reduce(
+    (totaalPunten, speler) => totaalPunten + speler.punten,
+    0,
+  );
 
   const toonSamenvatting = () => {
     const totaal = basisspelers.length + bankzitters.length;
     const openBasisplaatsen = 11 - basisspelers.length;
     const openBankplaatsen = 4 - bankzitters.length;
-    const resterendBudget = 100 - [...basisspelers, ...bankzitters].reduce(
-      (totaalPrijs, speler) => totaalPrijs + speler.prijs,
-      0,
-    );
+    const resterendBudget = 100 - totaalBudgetGebruikt;
 
     return (
       <View>
@@ -49,7 +52,9 @@ const SpelersOverzicht = () => {
         <Text>Geselecteerd: {totaal} spelers</Text>
         <Text>Open basisplaatsen: {openBasisplaatsen}</Text>
         <Text>Open plaatsen op de bank: {openBankplaatsen}</Text>
+        <Text>Gebruikt budget: €{totaalBudgetGebruikt} miljoen</Text>
         <Text>Resterend budget: €{resterendBudget} miljoen</Text>
+        <Text>Totaal fantasy-punten: {totaalFantasyPunten}</Text>
       </View>
     );
   };
@@ -57,11 +62,7 @@ const SpelersOverzicht = () => {
   const toonTeamStatus = () => {
     const teamCompleet =
       basisspelers.length === 11 && bankzitters.length === 4;
-    const budgetBeschikbaar =
-      100 - [...basisspelers, ...bankzitters].reduce(
-        (totaalPrijs, speler) => totaalPrijs + speler.prijs,
-        0,
-      );
+    const budgetBeschikbaar = 100 - totaalBudgetGebruikt;
 
     if (teamCompleet && budgetBeschikbaar >= 0) {
       return <Text>Je team is volledig en past binnen het budget.</Text>;
@@ -85,10 +86,8 @@ const SpelersOverzicht = () => {
       />
       {toonSamenvatting()}
       {toonTeamStatus()}
-      <Text>Basisspelers</Text>
-      {toonSpelers(basisspelers)}
-      <Text>Bankzitters</Text>
-      {toonSpelers(bankzitters)}
+      <FantasyTeam basisspelers={basisspelers} bankzitters={bankzitters} />
+      <BeschikbareSpelers spelers={beschikbareSpelers} />
     </View>
   );
 };
