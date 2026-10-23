@@ -2,6 +2,12 @@
 
 Deze map is de aparte Spring Boot-backend voor de Cross-Platform-app in `../crossplatform/CrossPlatformApp`. De meegeleverde mock-ups tonen een WK Fantasy 2026-app met spelersmarkt, spelerdetail, elftal in een gekozen formatie, profiel en opgeslagen elftallen. De mock-ups zijn richtinggevend; bouw eerst de gegevens en flows die nodig zijn voor het examen en voor een werkende kernapp.
 
+## Huidige start
+
+Er staat nu een minimaal Spring Boot 4-projectskelet met Java 25, Maven, een health-endpoint en een eerste controller-test. Dit is alleen de technische start: er is nog geen speler-, team- of gebruikersfunctionaliteit en er is nog geen databank gekoppeld.
+
+Vereist: JDK 25 en Maven 3.9+. Start vanuit deze map met `mvn spring-boot:run` en open `http://localhost:8080/api/health`. Voer de test uit met `mvn test`. De cursusrepository kon tijdens deze stap niet worden opgehaald; de code is daarom beperkt tot een gangbare Spring Boot-opstart en nog niet afgestemd op specifieke les 4/5-voorbeelden.
+
 ## Examenopdracht: afvinklijst
 
 - Spring Boot 4 en Java 25
