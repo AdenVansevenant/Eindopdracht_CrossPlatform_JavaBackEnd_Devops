@@ -5,6 +5,7 @@ const FantasySpeler = ({ speler, label }) => {
     <View>
       <Text>{label}</Text>
       <Text>{speler.naam}</Text>
+      <Text>Land: {speler.land}</Text>
       <Text>Positie: {speler.positie}</Text>
       <Text>Prijs: €{speler.prijs} miljoen</Text>
       <Text>Fantasy-punten: {speler.punten}</Text>
