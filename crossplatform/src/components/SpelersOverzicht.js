@@ -1,69 +1,68 @@
 import { Text, View } from 'react-native';
 
 const SpelersOverzicht = () => {
-  const titel = 'Spelersoverzicht';
-  const spelers = [
-    { id: 1, naam: 'Speler 1', positie: 'Keeper' },
-    { id: 2, naam: 'Speler 2', positie: 'Verdediger' },
-    { id: 3, naam: 'Speler 3', positie: 'Aanvaller' },
+  const titel = 'Mijn WK Fantasy Team';
+  const basisspelers = [
+    { id: 1, naam: 'Doelman 1', positie: 'Doelman', prijs: 8 },
+    { id: 2, naam: 'Verdediger 1', positie: 'Verdediger', prijs: 7 },
+    { id: 3, naam: 'Verdediger 2', positie: 'Verdediger', prijs: 6 },
+    { id: 4, naam: 'Verdediger 3', positie: 'Verdediger', prijs: 6 },
+    { id: 5, naam: 'Verdediger 4', positie: 'Verdediger', prijs: 5 },
+    { id: 6, naam: 'Middenvelder 1', positie: 'Middenvelder', prijs: 9 },
+    { id: 7, naam: 'Middenvelder 2', positie: 'Middenvelder', prijs: 8 },
+    { id: 8, naam: 'Middenvelder 3', positie: 'Middenvelder', prijs: 7 },
+    { id: 9, naam: 'Middenvelder 4', positie: 'Middenvelder', prijs: 6 },
+    { id: 10, naam: 'Aanvaller 1', positie: 'Aanvaller', prijs: 10 },
+    { id: 11, naam: 'Aanvaller 2', positie: 'Aanvaller', prijs: 8 },
+  ];
+  const bankzitters = [
+    { id: 12, naam: 'Bankspeler 1', positie: 'Doelman', prijs: 4 },
+    { id: 13, naam: 'Bankspeler 2', positie: 'Verdediger', prijs: 4 },
+    { id: 14, naam: 'Bankspeler 3', positie: 'Middenvelder', prijs: 5 },
+    { id: 15, naam: 'Bankspeler 4', positie: 'Aanvaller', prijs: 5 },
   ];
 
   const toonSpeler = (speler) => (
     <View key={speler.id}>
       <Text>{speler.naam}</Text>
       <Text>Positie: {speler.positie}</Text>
+      <Text>Prijs: €{speler.prijs} miljoen</Text>
     </View>
   );
 
-  const toonSpelers = () => {
+  const toonSpelers = (spelers) => {
     if (spelers.length === 0) {
-      return <Text>Geen spelers gevonden.</Text>;
+      return <Text>Er zijn nog geen spelers geselecteerd.</Text>;
     }
 
     return spelers.map((speler) => toonSpeler(speler));
   };
 
   const toonSamenvatting = () => {
-    if (spelers.length === 0) {
-      return <Text>Er zijn nog geen spelers toegevoegd aan het team.</Text>;
-    }
+    const totaal = basisspelers.length + bankzitters.length;
+    const resterendBudget = 100 - [...basisspelers, ...bankzitters].reduce(
+      (totaalPrijs, speler) => totaalPrijs + speler.prijs,
+      0,
+    );
 
-    const aantalSpelers = spelers.length;
-    const spelerWoord = aantalSpelers === 1 ? 'speler' : 'spelers';
-
-    return <Text>Er staan {aantalSpelers} {spelerWoord} in het overzicht.</Text>;
-  };
-
-  const toonSpelersPerPositie = () => {
-    const posities = ['Keeper', 'Verdediger', 'Middenvelder', 'Aanvaller'];
-
-    return posities.map((positie) => {
-      const spelersOpPositie = spelers.filter(
-        (speler) => speler.positie === positie,
-      );
-
-      if (spelersOpPositie.length === 0) {
-        return null;
-      }
-
-      return (
-        <View key={positie}>
-          <Text>{positie}</Text>
-          {spelersOpPositie.map((speler) => (
-            <Text key={speler.id}>{speler.naam}</Text>
-          ))}
-        </View>
-      );
-    });
+    return (
+      <View>
+        <Text>Basisspelers: {basisspelers.length} van 11</Text>
+        <Text>Bankzitters: {bankzitters.length} van 4</Text>
+        <Text>Geselecteerd: {totaal} spelers</Text>
+        <Text>Resterend budget: €{resterendBudget} miljoen</Text>
+      </View>
+    );
   };
 
   return (
     <View>
       <Text>{titel}</Text>
-      <Text>Bekijk de spelers en hun positie in het team.</Text>
       {toonSamenvatting()}
-      {toonSpelers()}
-      {toonSpelersPerPositie()}
+      <Text>Basisspelers</Text>
+      {toonSpelers(basisspelers)}
+      <Text>Bankzitters</Text>
+      {toonSpelers(bankzitters)}
     </View>
   );
 };
